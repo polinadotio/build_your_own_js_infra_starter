@@ -27,7 +27,10 @@ function transform(code, visitors) {
 }
 
 function traverseAST(node, visitors) {
-  // console.log("now at the following node", node.type)
+  if (node === undefined) {
+    return
+  }
+  // console.log("now at the following node", node);
   //for the given node, check if you need to call the 
   //handler for the visitor on it
   for (var type in visitors) {
@@ -37,6 +40,12 @@ function traverseAST(node, visitors) {
       node = visitors[type](node);
       // console.log("after calling visitor", node);
     }
+  }
+
+  //what I'm missing is rewalking the modified node, bc we should
+  //probably do that
+  if (node === undefined) {
+    return
   }
 
   //continue going through your nodes and visit each node
