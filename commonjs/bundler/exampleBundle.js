@@ -3,7 +3,13 @@ function define(id, moduleMap, factory) {
   // Does a lot of other stuff, but one of the things is
   // calling the factory and caching the module object:
   const module = { exports: {} };
-  define.moduleMap[id] = module;
+  define.moduleMap[id] = module; //attaching to global 
+  //you want to define moduleMap before factory bc of
+  //cyclical requires 
+  //we want to cache the module immediately 
+  //in case something in the factory requires the thing
+  //we just required 
+  //need to resolve cyclical requires ... 
   factory(require, module, module.exports);
 }
 

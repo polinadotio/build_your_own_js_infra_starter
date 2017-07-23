@@ -1,11 +1,12 @@
 const transform = require('../');
-const t = require('babel-types');
+const t = require('babel-types'); //allows you to build up an ast from scratch
 
 describe('transform', () => {
   it('should transform a literal', () => {
     const code = transform('1;', {
       NumericLiteral(node) {
-        return t.numericLiteral(2);
+        node.value = t.numericLiteral(2).value; //oh shit, you don't have to specify the key 
+        return node;
       },
     });
 
