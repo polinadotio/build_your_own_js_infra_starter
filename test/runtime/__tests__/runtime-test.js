@@ -16,6 +16,7 @@ describe('test', () => {
     const wooTest = jest.fn();
 
     t.describe('foo', () => {
+      
       t.before(fooBefore);
       t.after(fooAfter);
 
